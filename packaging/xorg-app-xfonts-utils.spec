@@ -1,11 +1,11 @@
 Summary: X Window System font utility programs
-Name: xorg-x11-xfonts-utils
+Name: xorg-app-xfonts-utils
 Version: 7.5
 Release: 4
 License: MIT/X11
 Group: User Interface/X
 URL: http://www.x.org
-Source: %{name}-%{version}.tar.gz
+Source: xfonts-utils-%{version}.tar.gz
 
 BuildRequires: pkgconfig(xorg-macros)
 BuildRequires: pkgconfig(xfont)
@@ -31,7 +31,7 @@ The programs in this package include:
  - fonttosfnt, a program to wrap bitmap fonts in a sfnt (TrueType) wrapper.
 
 %prep
-%setup -q
+%setup -q -n xfonts-utils-%{version}
 
 %build
 # Build all apps
@@ -47,7 +47,6 @@ The programs in this package include:
 }
 
 %install
-rm -rf $RPM_BUILD_ROOT
 # Install all apps
 {
    for app in %{DEF_SUBDIRS} ; do
@@ -57,10 +56,7 @@ rm -rf $RPM_BUILD_ROOT
    done
 }
 
-%remove_docs
-
-%clean
-rm -rf $RPM_BUILD_ROOT
+%docs_package
 
 %files
 %{_bindir}/*
