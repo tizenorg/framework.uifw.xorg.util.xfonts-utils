@@ -6,6 +6,7 @@ License: MIT/X11
 Group: User Interface/X
 URL: http://www.x.org
 Source: %{name}-%{version}.tar.gz
+Source1001: packaging/xorg-x11-xfonts-utils.manifest 
 
 BuildRequires: pkgconfig(xorg-macros)
 BuildRequires: pkgconfig(xfont)
@@ -34,6 +35,7 @@ The programs in this package include:
 %setup -q
 
 %build
+cp %{SOURCE1001} .
 # Build all apps
 {
     for app in %{DEF_SUBDIRS}; do
@@ -63,6 +65,7 @@ rm -rf $RPM_BUILD_ROOT
 rm -rf $RPM_BUILD_ROOT
 
 %files
+%manifest xorg-x11-xfonts-utils.manifest
 %{_bindir}/*
 %{_libdir}/pkgconfig/fontutil.pc
 %{_prefix}/share/aclocal/fontutil.m4
