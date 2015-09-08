@@ -6,7 +6,7 @@ Name: xorg-x11-%{pkgname}
 Epoch: 1
 Version: 7.5
 Release: 8
-License: MIT
+License: MIT and BSD 2-clause
 Group: User Interface/X
 URL: http://www.x.org
 
@@ -57,7 +57,7 @@ and generation.
       %configure \
       	--with-mapdir=%{_datadir}/X11/fonts/util %{_prefix}/share/fonts/X11/util \
       	CPPFLAGS="${CPPCFLAGS} -D_GNU_SOURCE"
-      #%configure --with-mapdir=%{_datadir}/X11/fonts/util 
+      #%configure --with-mapdir=%{_datadir}/X11/fonts/util
       make %{?jobs:-j%jobs}
       cd ${oldpwd}
    done
@@ -65,6 +65,8 @@ and generation.
 
 %install
 rm -rf $RPM_BUILD_ROOT
+mkdir -p %{buildroot}/usr/share/license
+cp -af COPYING %{buildroot}/usr/share/license/%{name}
 # Install all apps
 {
     for app in bdftopcf fonttosfnt mkfontdir mkfontscale font-util; do
@@ -91,6 +93,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(-,root,root,-)
+/usr/share/license/%{name}
 #%doc README-* COPYING-bdftopcf COPYING-[c-z]*
 %{_bindir}/*
 #%{_bindir}/bdftopcf
