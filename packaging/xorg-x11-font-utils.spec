@@ -1,12 +1,11 @@
 %define pkgname font-utils
 
 Summary: X.Org X11 font utilities
-Name: xorg-x11-%{pkgname}
-# IMPORTANT: If package ever gets renamed to something else, remove the Epoch line!
+Name: xorg-x11-font-utils
 Epoch: 1
 Version: 7.5
 Release: 8
-License: MIT and BSD 2-clause
+License: MIT and BSD-2-Clause-NetBSD
 Group: User Interface/X
 URL: http://www.x.org
 
